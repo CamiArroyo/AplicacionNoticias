@@ -1,0 +1,51 @@
+<ion-header [translucent]="true" mode="ios" class="ion-no-border"> <!-- Forzamos a que en todo dispositivo tenga el estilo de ios -->
+  <ion-toolbar>
+    <ion-title>
+      Camila's News
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-header collapse="condense" mode="ios" class="ion-no-border">
+    <ion-toolbar>
+      <ion-title size="large">Camila's News</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid fixed>
+
+    <ion-row>
+
+      <ion-col *ngFor="let article of articles; let i= index"> <!-- Con "let i= index" extraigo el índice del arreglo -->
+        <ion-card>
+
+          <ion-card-subtitle class="ion-margin">
+            <span class="text-primary"> {{ i+1 }}. </span> <!-- "text-primary": Modificamos "global.scss" -->
+            <span class="article-source-name"> {{ article.source.name }} </span> <!-- "article-source-name": Modificamos "global.scss" -->
+          </ion-card-subtitle>
+
+          <ion-card-title class="ion-padding-horizontal ion-margin-bottom">
+            {{ article.title }}
+          </ion-card-title>
+
+          <ion-img 
+            *ngIf="article.urlToImage"
+            [src]="article.urlToImage"> <!-- *ngIf: Si tiene imagen, entonces lo agregamos al [src] -->
+          </ion-img>
+
+          <ion-card-content
+            *ngIf="article.description">
+            <p>{{ article.description }}</p> <!-- *ngIf: Si tiene descripción, entonces la agregamos en una etiqueta <p> -->
+          </ion-card-content>
+
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+
+
+</ion-content>
