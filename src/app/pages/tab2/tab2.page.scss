@@ -1,0 +1,4 @@
+::-webkit-scrollbar, *::-webkit-scrollbar { //para sacar la barra de scroll en el "ion-segment"
+    display: none !important;
+    overflow: hidden; 
+}

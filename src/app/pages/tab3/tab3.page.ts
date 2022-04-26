@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { StorageService } from '../../services/storage.service';
+import { Article } from '../../interfaces';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  get articles(): Article[] { //tengo mi arreglo de artículos, conectados directamente al servicio
+    return this.storageService.getLocalArticles;
+  }
+
+  //cargamos los favoritos del Storage (ver storage.service.ts)
+  constructor( private storageService: StorageService ) {}
 
 }

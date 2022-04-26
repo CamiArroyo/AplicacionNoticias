@@ -21,3 +21,11 @@ export interface Source {
     id?:    string;
     name:   string;
 }
+
+//creamos esta interface que me va a servir para poder tipar la interface en "news.service.ts"
+export interface ArticlesByCategoryAndPage {
+    [key: string] : {
+        page: number,
+        articles: Article[]
+    }
+}

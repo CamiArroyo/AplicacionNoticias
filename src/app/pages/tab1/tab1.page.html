@@ -14,38 +14,20 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-grid fixed>
+  <!-- Para poder usar "articles" y "article" debemos importar "ComponentsModule" en "tab1.module.ts" -->
+  <app-articles 
+    [articles]="articles">
+  </app-articles>
 
-    <ion-row>
-
-      <ion-col *ngFor="let article of articles; let i= index"> <!-- Con "let i= index" extraigo el índice del arreglo -->
-        <ion-card>
-
-          <ion-card-subtitle class="ion-margin">
-            <span class="text-primary"> {{ i+1 }}. </span> <!-- "text-primary": Modificamos "global.scss" -->
-            <span class="article-source-name"> {{ article.source.name }} </span> <!-- "article-source-name": Modificamos "global.scss" -->
-          </ion-card-subtitle>
-
-          <ion-card-title class="ion-padding-horizontal ion-margin-bottom">
-            {{ article.title }}
-          </ion-card-title>
-
-          <ion-img 
-            *ngIf="article.urlToImage"
-            [src]="article.urlToImage"> <!-- *ngIf: Si tiene imagen, entonces lo agregamos al [src] -->
-          </ion-img>
-
-          <ion-card-content
-            *ngIf="article.description">
-            <p>{{ article.description }}</p> <!-- *ngIf: Si tiene descripción, entonces la agregamos en una etiqueta <p> -->
-          </ion-card-content>
-
-        </ion-card>
-      </ion-col>
-
-    </ion-row>
-
-  </ion-grid>
+  <!-- El infinite scroll generalmente se coloca antes del cierre del ion-content -->
+  <ion-infinite-scroll 
+    threshold="25%" 
+    position="bottom" 
+    (ionInfinite)="loadData()"
+  >
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 
 </ion-content>
